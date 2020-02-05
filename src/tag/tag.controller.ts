@@ -38,13 +38,11 @@ export class TagController {
     }
 
     @Put()
-    async update(@Body('id') idTag: string, @Body('newId') newId: string, @Body('newTag') newT: string): Promise<TagEntity> {
+    async update(@Body('id') idTag: string, @Body('newT') newT: string): Promise<TagEntity> {
 
-      var newTag = new TagEntity();
-      newTag.id = newId;
-      newTag.tag = newT;
-
-      return await this.tagService.update(idTag, newTag);
+      console.log(newT);
+      return await this.tagService.update(idTag, newT);
+      
     }
 
 

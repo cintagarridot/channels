@@ -54,14 +54,18 @@ export class tagService extends TypeOrmCrudService<TagEntity> {
     }
 
 
-    async update(id: string, Tagg:TagEntity): Promise<TagEntity> {
+    async update(id: string, newT: string): Promise<TagEntity> {
 
       let toUpdate = await this.tagRepository.findOne(id);
-      delete toUpdate.id;
+      console.log(toUpdate);
       delete toUpdate.tag;
 
-      let updated = Object.assign(toUpdate, Tagg);
-      return await this.tagRepository.save(updated);
+      toUpdate.tag = newT;
+
+      console.log("Nuevo: " + toUpdate)
+
+      //let updated = Object.assign(toUpdate, newTag);
+      return await this.tagRepository.save(toUpdate);
 
 
     }
