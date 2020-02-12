@@ -1,13 +1,13 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { TagEntity } from './tag.entity';
-import { tagService } from './tag.service';
+import { TagEntity } from './tagEntity';
+import { TagService } from './tag.service';
 import { TagController } from './tag.controller';
 
 @Module({
     imports: [TypeOrmModule.forFeature([TagEntity])],
-    providers: [tagService],
+    providers: [TagService],
     controllers: [
         TagController
     ],

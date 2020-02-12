@@ -2,12 +2,11 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository, getRepository, DeleteResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
-import { TagEntity } from './tag.entity';
+import { TagEntity } from './tagEntity';
 
-import { validate } from 'class-validator';
 
 @Injectable()
-export class tagService extends TypeOrmCrudService<TagEntity> {
+export class TagService extends TypeOrmCrudService<TagEntity> {
    
     
   constructor(
@@ -22,11 +21,11 @@ export class tagService extends TypeOrmCrudService<TagEntity> {
     return await this.tagRepository.find();
   }
 
-  async create(id: string, t: string): Promise<TagEntity> {
+  async create(t: string): Promise<TagEntity> {
 
  
     let newTag = new TagEntity();
-    newTag.id = id;
+    
     newTag.tag = t;
 
     
@@ -43,26 +42,17 @@ export class tagService extends TypeOrmCrudService<TagEntity> {
   }  
 
    async findById(id: string): Promise<TagEntity> {
-    const t = await this.tagRepository.findOne(id);
-
-        if (!t) {
-            const errors = { tag: ' not found ' };
-            throw new HttpException({ errors }, 401);
-        };
-
-        return t;
-    }
+    return await this.tagRepository.findOne(id);
+  }
 
 
     async update(id: string, newT: string): Promise<TagEntity> {
 
       let toUpdate = await this.tagRepository.findOne(id);
-      console.log(toUpdate);
+
       delete toUpdate.tag;
 
       toUpdate.tag = newT;
-
-      console.log("Nuevo: " + toUpdate)
 
       //let updated = Object.assign(toUpdate, newTag);
       return await this.tagRepository.save(toUpdate);
