@@ -23,7 +23,6 @@
     "migration:generate": "ts-node node_modules/.bin/typeorm migration:generate",
     "migration:run": "ts-node node_modules/.bin/typeorm migration:run",
     "migration:revert": "ts-node node_modules/.bin/typeorm migration:revert"
-
   },
   "dependencies": {
     "@nestjs/common": "^6.10.14",

@@ -5,17 +5,7 @@ import { Connection } from 'typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { tagModule } from './tag/tag.module';
-import { UserController } from './user/user.controller';
-import {UserModule} from "./user/user.module";
-import { PhotoController } from './photo/photo.controller';
-import {PhotoModule} from "./photo/photo.module";
-import {PhotoEntity} from "./photo/photo.entity";
-import {UserEntity} from "./user/user.entity";
-import {TagEntity} from "./tag/tagEntity";
-import { CommentController } from './comment/comment.controller';
-import {CommentModule} from "./comment/comment.module";
-import {CommentEntity} from "./comment/comment.entity";
+
 import { ChannelsController } from './channels/channels.controller';
 import {ChannelsEntity} from "./channels/channels.entity";
 import {ChannelsModule} from "./channels/channels.module";
@@ -30,7 +20,7 @@ import {ChannelsModule} from "./channels/channels.module";
       username: 'postgres',
       password: 'changeme',
       database: 'postgres',
-      entities: [ TagEntity, UserEntity, PhotoEntity, CommentEntity, ChannelsEntity ],
+      entities: [ ChannelsEntity ],
       // seeds: ["src/**/*.seed.ts"],
       // factories: ["src/**/*.factory.ts"],
       synchronize: false, // -> lo desactivamos porque vamos a crear migraciones
@@ -43,10 +33,10 @@ import {ChannelsModule} from "./channels/channels.module";
 
 
     }),
-    tagModule, UserModule, PhotoModule, CommentModule, ChannelsModule
+    ChannelsModule
 
   ],
-  controllers: [ AppController, UserController, PhotoController, CommentController, ChannelsController ],
+  controllers: [ AppController, ChannelsController ],
   providers: [AppService],
 })
 export class AppModule {
